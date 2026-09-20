@@ -1,5 +1,14 @@
+import type { Metadata } from "next"
 import { AgendamentoFormProvider } from "@/components/agendamento-form-provider"
 import { AppShell } from "@/components/app-shell"
+
+export const metadata: Metadata = {
+  title: "Painel",
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
 
 export default function PainelLayout({
   children,

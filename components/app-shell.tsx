@@ -13,33 +13,40 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { rotasPainel } from "@/lib/routes"
 import { useDados } from "@/lib/store"
 import { Logo, LogoMark } from "@/components/logo"
 import { Button } from "@/components/ui/button"
 import { useAgendamentoForm } from "@/components/agendamento-form-provider"
 
 const NAV_DESKTOP = [
-  { href: "/", label: "Hoje", icon: Home },
-  { href: "/agenda", label: "Agenda", icon: CalendarDays },
-  { href: "/clientes", label: "Clientes", icon: Users },
-  { href: "/servicos", label: "Serviços", icon: Briefcase },
+  { href: rotasPainel.hoje, label: "Hoje", icon: Home },
+  { href: rotasPainel.agenda, label: "Agenda", icon: CalendarDays },
+  { href: rotasPainel.clientes, label: "Clientes", icon: Users },
+  { href: rotasPainel.servicos, label: "Serviços", icon: Briefcase },
 ]
 
 const NAV_MOBILE = [
-  { href: "/", label: "Hoje", icon: Home },
-  { href: "/agenda", label: "Agenda", icon: CalendarDays },
-  { href: "/clientes", label: "Clientes", icon: Users },
-  { href: "/mais", label: "Mais", icon: MoreHorizontal },
+  { href: rotasPainel.hoje, label: "Hoje", icon: Home },
+  { href: rotasPainel.agenda, label: "Agenda", icon: CalendarDays },
+  { href: rotasPainel.clientes, label: "Clientes", icon: Users },
+  { href: rotasPainel.mais, label: "Mais", icon: MoreHorizontal },
 ]
 
 function ativo(pathname: string, href: string) {
-  if (href === "/") return pathname === "/"
+  if (href === rotasPainel.hoje) {
+    return pathname === rotasPainel.hoje || pathname === `${rotasPainel.hoje}/`
+  }
   return pathname === href || pathname.startsWith(href + "/")
 }
 
 /** Onde faz sentido criar agendamento — não em Clientes/Serviços/etc. */
 function paginaDeAgenda(pathname: string) {
-  return pathname === "/" || pathname.startsWith("/agenda")
+  return (
+    pathname === rotasPainel.hoje ||
+    pathname === `${rotasPainel.hoje}/` ||
+    pathname.startsWith(rotasPainel.agenda)
+  )
 }
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -53,7 +60,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {/* Sidebar — desktop */}
       <aside className="sticky top-0 hidden h-dvh w-[200px] shrink-0 flex-col border-r border-sidebar-border bg-sidebar px-2.5 py-3 lg:w-[220px] md:flex">
         <Link
-          href="/"
+          href={rotasPainel.hoje}
           className="mb-1 flex h-10 items-center rounded-[10px] px-2.5 transition-opacity hover:opacity-80"
         >
           <Logo size="sidebar" />
@@ -70,7 +77,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </Button>
         )}
 
-        <nav className={cn("flex flex-col gap-0.5", mostrarAgendar ? "mt-3" : "mt-4")}>
+        <nav
+          className={cn(
+            "flex flex-col gap-0.5",
+            mostrarAgendar ? "mt-3" : "mt-4",
+          )}
+        >
           {NAV_DESKTOP.map((item) => {
             const on = ativo(pathname, item.href)
             return (
@@ -93,10 +105,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
         <div className="mt-auto space-y-2 pb-1">
           <Link
-            href="/configuracoes"
+            href={rotasPainel.configuracoes}
             className={cn(
               "flex h-10 items-center gap-2.5 rounded-[10px] px-2.5 text-sm font-medium transition-colors duration-150",
-              ativo(pathname, "/configuracoes")
+              ativo(pathname, rotasPainel.configuracoes)
                 ? "bg-muted text-foreground"
                 : "text-muted-foreground hover:bg-muted hover:text-foreground",
             )}
@@ -124,7 +136,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         {/* Header mobile — marca centralizada */}
         <header className="sticky top-0 z-30 flex h-12 items-center justify-center border-b border-border bg-background/90 px-4 backdrop-blur-md md:hidden">
           <Link
-            href="/"
+            href={rotasPainel.hoje}
             className="flex h-full items-center justify-center"
             aria-label="Da Pra Hoje"
           >

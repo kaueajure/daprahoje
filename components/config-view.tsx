@@ -6,6 +6,7 @@ import { ExternalLink, Plus, Trash2 } from "lucide-react"
 import { toast } from "@/components/ui/toast"
 
 import { useDados } from "@/lib/store"
+import { slugReservado } from "@/lib/routes"
 import type { DisponibilidadeDia } from "@/lib/types"
 import { dataCurta, nomeDiaSemana } from "@/lib/format"
 import { Button } from "@/components/ui/button"
@@ -110,13 +111,16 @@ export function ConfigView() {
                 id="p-slug"
                 className="h-11 flex-1 bg-transparent px-1 outline-none"
                 value={perfil.slug}
-                onChange={(e) =>
-                  atualizarPerfil({
-                    slug: e.target.value
-                      .toLowerCase()
-                      .replace(/[^a-z0-9-]/g, ""),
-                  })
-                }
+                onChange={(e) => {
+                  const next = e.target.value
+                    .toLowerCase()
+                    .replace(/[^a-z0-9-]/g, "")
+                  if (slugReservado(next)) {
+                    toast.error("Esse link está reservado. Escolha outro.")
+                    return
+                  }
+                  atualizarPerfil({ slug: next })
+                }}
               />
             </div>
           </div>

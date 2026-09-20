@@ -4,17 +4,18 @@ import Link from "next/link"
 import { Briefcase, ChevronRight, ExternalLink, Settings } from "lucide-react"
 
 import { useDados } from "@/lib/store"
+import { rotasPainel } from "@/lib/routes"
 import { LogoMark } from "@/components/logo"
 
 const ITENS = [
   {
-    href: "/servicos",
+    href: rotasPainel.servicos,
     label: "Serviços",
     desc: "Preços e duração",
     icon: Briefcase,
   },
   {
-    href: "/configuracoes",
+    href: rotasPainel.configuracoes,
     label: "Configurações",
     desc: "Horários e perfil",
     icon: Settings,

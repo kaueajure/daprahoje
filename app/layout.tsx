@@ -1,20 +1,42 @@
-import type { Metadata, Viewport } from 'next'
-import { DataProvider } from '@/lib/store'
-import { Toaster } from '@/components/ui/toast'
-import './globals.css'
+import type { Metadata, Viewport } from "next"
+import { Manrope } from "next/font/google"
+import { DataProvider } from "@/lib/store"
+import { Toaster } from "@/components/ui/toast"
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site"
+import "./globals.css"
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-manrope",
+})
 
 export const metadata: Metadata = {
-  title: 'Da Pra Hoje — sua agenda, sem complicação',
-  description:
-    'A agenda online simples e rápida para quem trabalha com hora marcada. Veja num piscar de olhos quem está agendado hoje e quais horários ainda estão livres.',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} — sua agenda, sem complicação`,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    siteName: SITE_NAME,
+  },
+  icons: {
+    icon: "/brand/logo.png",
+    apple: "/brand/logo.png",
+  },
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light',
-  themeColor: '#111111',
-  width: 'device-width',
+  colorScheme: "light",
+  themeColor: "#111111",
+  width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
 }
 
 export default function RootLayout({
@@ -23,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={manrope.variable}>
       <body className="min-h-dvh bg-background font-sans text-foreground antialiased">
         <DataProvider>
           {children}
