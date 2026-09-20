@@ -69,7 +69,7 @@ export function PublicoView({ slug }: { slug: string }) {
   if (!encontrado) {
     return (
       <div className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center gap-3 px-6 text-center">
-        <LogoMark className="size-12" />
+        <LogoMark size="xl" />
         <p className="text-xl font-semibold">Página não encontrada</p>
         <p className="text-muted-foreground">
           Confira o link com o profissional.
@@ -127,8 +127,8 @@ export function PublicoView({ slug }: { slug: string }) {
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col px-4 py-5">
       <header className="flex flex-col items-center text-center">
-        <LogoMark className="size-12" />
-        <h1 className="mt-4 text-2xl font-semibold tracking-tight">
+        <LogoMark size="xl" />
+        <h1 className="mt-3 text-2xl font-semibold tracking-tight">
           {dados.perfil.negocio}
         </h1>
         <p className="text-sm text-muted-foreground">
@@ -324,9 +324,10 @@ export function PublicoView({ slug }: { slug: string }) {
         </>
       )}
 
-      <footer className="mt-auto flex items-center justify-center gap-1.5 pt-10 pb-4 text-xs text-muted-foreground">
+      <footer className="mt-auto flex items-center justify-center gap-2 pt-10 pb-4 text-xs text-muted-foreground">
         <span>feito com</span>
-        <span className="font-semibold text-foreground">Da Pra Hoje</span>
+        <LogoMark size="xs" />
+        <span className="sr-only">Da Pra Hoje</span>
       </footer>
     </div>
   )

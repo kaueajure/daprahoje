@@ -1,47 +1,62 @@
 import { cn } from "@/lib/utils"
 
-export function LogoMark({ className }: { className?: string }) {
+const LOGO_SRC = "/brand/logo.png"
+
+/** Proporção natural do monograma após trim (960×413 ≈ 2.32:1). */
+const LOGO_W = 960
+const LOGO_H = 413
+
+/**
+ * Alturas pensadas para o monograma largo:
+ * confortáveis em header/sidebar sem competir com tipografia.
+ */
+const FRAME = {
+  xs: "h-3.5 w-auto",
+  sm: "h-5 w-auto",
+  md: "h-6 w-auto",
+  sidebar: "h-[26px] w-auto",
+  lg: "h-7 w-auto",
+  xl: "h-9 w-auto",
+  "2xl": "h-10 w-auto",
+} as const
+
+export type LogoSize = keyof typeof FRAME
+
+export function LogoMark({
+  className,
+  size = "md",
+}: {
+  className?: string
+  size?: LogoSize
+}) {
   return (
-    <span
+    // eslint-disable-next-line @next/next/no-img-element -- PNG original, sem conversão
+    <img
+      src={LOGO_SRC}
+      alt="Da Pra Hoje"
+      width={LOGO_W}
+      height={LOGO_H}
+      draggable={false}
       className={cn(
-        "inline-flex items-center justify-center rounded-[10px] bg-primary text-primary-foreground",
+        "block shrink-0 object-contain select-none",
+        FRAME[size],
         className,
       )}
-      aria-hidden="true"
-    >
-      <svg viewBox="0 0 24 24" fill="none" className="h-[55%] w-[55%]">
-        <circle
-          cx="12"
-          cy="12"
-          r="8.25"
-          stroke="currentColor"
-          strokeWidth="2"
-        />
-        <path
-          d="M12 7.5v5l3.2 1.9"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </span>
+    />
   )
 }
 
 export function Logo({
   className,
-  showMark = true,
+  size = "sidebar",
 }: {
   className?: string
-  showMark?: boolean
+  size?: LogoSize
 }) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      {showMark && <LogoMark className="size-8" />}
-      <span className="text-[17px] font-semibold tracking-tight text-foreground">
-        Da Pra Hoje
-      </span>
+    <span className={cn("inline-flex items-center", className)}>
+      <LogoMark size={size} />
+      <span className="sr-only">Da Pra Hoje</span>
     </span>
   )
 }

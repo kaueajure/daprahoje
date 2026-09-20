@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ArrowRight, Clock, Plus } from "lucide-react"
+import { ArrowRight, Clock } from "lucide-react"
 
 import { useDados } from "@/lib/store"
 import { useAgora } from "@/lib/use-now"
@@ -74,24 +74,13 @@ export function HojeView() {
 
   return (
     <div className="flex flex-col gap-4 md:gap-5">
-      <header className="flex items-end justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-sm text-muted-foreground">
-            {saudacao()}, {dados.perfil.nome}
-          </p>
-          <h1 className="mt-0.5 text-[24px] font-semibold tracking-tight text-balance md:text-[28px]">
-            {dataExtenso(hoje)}
-          </h1>
-        </div>
-        {/* CTA só no mobile — no desktop fica na sidebar */}
-        <Button
-          className="shrink-0 md:hidden"
-          size="sm"
-          onClick={() => abrirNovo()}
-        >
-          <Plus className="size-4" />
-          Novo
-        </Button>
+      <header className="min-w-0">
+        <p className="text-sm text-muted-foreground">
+          {saudacao()}, {dados.perfil.nome}
+        </p>
+        <h1 className="mt-0.5 text-[24px] font-semibold tracking-tight text-balance md:text-[28px]">
+          {dataExtenso(hoje)}
+        </h1>
       </header>
 
       {/* Layout desktop: resumo + cards à esquerda, agenda à direita */}

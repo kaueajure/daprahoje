@@ -35,10 +35,10 @@ export function MaisView() {
         </p>
       </header>
 
-      <div className="card-surface flex items-center gap-3 rounded-[16px] p-4">
-        <LogoMark className="size-11" />
-        <div className="min-w-0 flex-1">
-          <p className="truncate font-medium">{perfil.negocio}</p>
+      <div className="card-surface flex items-center gap-3 rounded-[16px] px-4 py-3.5">
+        <LogoMark size="md" className="shrink-0" />
+        <div className="min-w-0 flex-1 leading-snug">
+          <p className="truncate text-[15px] font-medium">{perfil.negocio}</p>
           <p className="truncate text-sm text-muted-foreground">
             {perfil.categoria}
             {perfil.cidade ? ` · ${perfil.cidade}` : ""}
