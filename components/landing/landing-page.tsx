@@ -1,6 +1,5 @@
 import { SiteHeader } from "@/components/landing/site-header"
 import {
-  FAQ_ITENS,
   LandingAudience,
   LandingBenefits,
   LandingCta,
@@ -17,42 +16,16 @@ import {
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site"
 
 export function LandingPage() {
-  const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      name: SITE_NAME,
-      url: SITE_URL,
-      description: SITE_DESCRIPTION,
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Web",
-      inLanguage: "pt-BR",
-      offers: {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "BRL",
-      },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
-      logo: `${SITE_URL}/brand/logo.png`,
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: FAQ_ITENS.map((item) => ({
-        "@type": "Question",
-        name: item.q,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.a,
-        },
-      })),
-    },
-  ]
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: SITE_DESCRIPTION,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    inLanguage: "pt-BR",
+  }
 
   return (
     <>

@@ -7,6 +7,7 @@ import { toast } from "@/components/ui/toast"
 
 import { useDados } from "@/lib/store"
 import { slugReservado } from "@/lib/routes"
+import { SITE_HOST } from "@/lib/site"
 import type { DisponibilidadeDia } from "@/lib/types"
 import { dataCurta, nomeDiaSemana } from "@/lib/format"
 import { Button } from "@/components/ui/button"
@@ -106,7 +107,7 @@ export function ConfigView() {
           <div className="grid gap-2 sm:col-span-2">
             <Label htmlFor="p-slug">Link público</Label>
             <div className="flex items-center rounded-[12px] border border-input bg-background pl-3 text-sm">
-              <span className="text-muted-foreground">daparahoje.com/</span>
+              <span className="text-muted-foreground">{SITE_HOST}/</span>
               <input
                 id="p-slug"
                 className="h-11 flex-1 bg-transparent px-1 outline-none"

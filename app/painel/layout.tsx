@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { DadosProviders } from "@/components/dados-providers"
 import { AgendamentoFormProvider } from "@/components/agendamento-form-provider"
 import { AppShell } from "@/components/app-shell"
 
@@ -16,8 +17,10 @@ export default function PainelLayout({
   children: React.ReactNode
 }) {
   return (
-    <AgendamentoFormProvider>
-      <AppShell>{children}</AppShell>
-    </AgendamentoFormProvider>
+    <DadosProviders>
+      <AgendamentoFormProvider>
+        <AppShell>{children}</AppShell>
+      </AgendamentoFormProvider>
+    </DadosProviders>
   )
 }

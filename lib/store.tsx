@@ -227,9 +227,9 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   const salvarServico: StoreContexto["salvarServico"] = (s) => {
     const comId: Servico = {
-      ativo: true,
       ...s,
       id: s.id ?? uid(),
+      ativo: s.ativo ?? true,
     }
     setEstado((prev) => {
       const existe = prev.servicos.some((x) => x.id === comId.id)

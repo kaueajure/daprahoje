@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next"
 import { Manrope } from "next/font/google"
-import { DataProvider } from "@/lib/store"
-import { Toaster } from "@/components/ui/toast"
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site"
 import "./globals.css"
 
@@ -9,6 +7,7 @@ const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-manrope",
+  weight: ["400", "500", "600"],
 })
 
 export const metadata: Metadata = {
@@ -27,8 +26,8 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
   },
   icons: {
-    icon: "/brand/logo.png",
-    apple: "/brand/logo.png",
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
 }
 
@@ -47,10 +46,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={manrope.variable}>
       <body className="min-h-dvh bg-background font-sans text-foreground antialiased">
-        <DataProvider>
-          {children}
-          <Toaster />
-        </DataProvider>
+        {children}
       </body>
     </html>
   )

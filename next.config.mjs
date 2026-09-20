@@ -1,12 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  images: {
-    unoptimized: true,
-  },
-  agentRules: false,
   allowedDevOrigins: ['192.168.15.35', '127.0.0.1', 'localhost'],
   async redirects() {
     return [

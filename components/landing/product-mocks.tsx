@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils"
+import { SITE_HOST } from "@/lib/site"
 
 /** Representações estáticas da UI real — sem store, indexáveis no HTML. */
 
@@ -155,7 +156,7 @@ export function MockPublicoCard({ className }: { className?: string }) {
     >
       <div className="border-b border-border/80 px-4 py-4 text-center sm:px-5">
         <p className="text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
-          daparahoje.com/joaobarber
+          {SITE_HOST}/joaobarber
         </p>
         <p className="mt-2 text-xl font-semibold tracking-tight">João Barber</p>
         <p className="text-sm text-muted-foreground">Barbearia · Rio Preto</p>

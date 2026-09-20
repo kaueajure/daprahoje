@@ -23,6 +23,13 @@ export const SLUGS_RESERVADOS = [
   "api",
   "sitemap.xml",
   "robots.txt",
+  "favicon.ico",
+  "icon.svg",
+  "apple-icon.png",
+  "opengraph-image",
+  "twitter-image",
+  "brand",
+  "_next",
 ] as const
 
 export function slugReservado(slug: string) {

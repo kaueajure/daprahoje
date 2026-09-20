@@ -69,7 +69,7 @@
   --secondary: #f0f0ee;
   --secondary-foreground: #111111;
   --muted: #f0f0ee;
-  --muted-foreground: #6b6b66;
+  --muted-foreground: #5c5c58;
   --accent: #f0f0ee;
   --accent-foreground: #111111;
   --destructive: #c44b4b;
@@ -127,7 +127,7 @@
   }
 }
 
-/* Landing — microinterações leves */
+/* Landing — atmosfera leve no hero (sem JS) */
 .landing-hero-glow {
   background:
     radial-gradient(
@@ -136,25 +136,4 @@
       transparent 55%
     ),
     radial-gradient(50% 40% at 90% 10%, rgba(17, 17, 17, 0.03), transparent 50%);
-}
-
-.landing-reveal {
-  opacity: 0;
-  transform: translateY(12px);
-  transition:
-    opacity 0.55s ease,
-    transform 0.55s ease;
-}
-
-.landing-reveal-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .landing-reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
 }

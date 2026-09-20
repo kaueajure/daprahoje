@@ -1,15 +1,12 @@
 import { cn } from "@/lib/utils"
 
-const LOGO_SRC = "/brand/logo.png"
+const LOGO_WEBP = "/brand/logo.webp"
+const LOGO_PNG = "/brand/logo.png"
 
-/** Proporção natural do monograma após trim (960×413 ≈ 2.32:1). */
-const LOGO_W = 960
-const LOGO_H = 413
+/** Proporção natural do monograma (480×206 ≈ 2.33:1). */
+const LOGO_W = 480
+const LOGO_H = 206
 
-/**
- * Alturas pensadas para o monograma largo:
- * confortáveis em header/sidebar sem competir com tipografia.
- */
 const FRAME = {
   xs: "h-3.5 w-auto",
   sm: "h-5 w-auto",
@@ -30,19 +27,23 @@ export function LogoMark({
   size?: LogoSize
 }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element -- PNG original, sem conversão
-    <img
-      src={LOGO_SRC}
-      alt="Da Pra Hoje"
-      width={LOGO_W}
-      height={LOGO_H}
-      draggable={false}
-      className={cn(
-        "block shrink-0 object-contain select-none",
-        FRAME[size],
-        className,
-      )}
-    />
+    <picture>
+      <source srcSet={LOGO_WEBP} type="image/webp" />
+      {/* eslint-disable-next-line @next/next/no-img-element -- WebP/PNG leve com width/height (sem CLS) */}
+      <img
+        src={LOGO_PNG}
+        alt="Da Pra Hoje"
+        width={LOGO_W}
+        height={LOGO_H}
+        draggable={false}
+        decoding="async"
+        className={cn(
+          "block shrink-0 object-contain select-none",
+          FRAME[size],
+          className,
+        )}
+      />
+    </picture>
   )
 }
 

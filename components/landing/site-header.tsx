@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { rotasPainel } from "@/lib/routes"
+import { CTA_DEMO_LABEL } from "@/lib/site"
 import { LogoMark } from "@/components/logo"
 import { buttonVariants } from "@/components/ui/button"
 
@@ -20,6 +21,7 @@ const NAV = [
 export function SiteHeader() {
   const [aberto, setAberto] = React.useState(false)
   const [scrolled, setScrolled] = React.useState(false)
+  const btnRef = React.useRef<HTMLButtonElement>(null)
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -27,6 +29,18 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
+  React.useEffect(() => {
+    if (!aberto) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setAberto(false)
+        btnRef.current?.focus()
+      }
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [aberto])
 
   React.useEffect(() => {
     document.body.style.overflow = aberto ? "hidden" : ""
@@ -62,31 +76,26 @@ export function SiteHeader() {
             <a
               key={item.href}
               href={item.href}
-              className="rounded-[10px] px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="rounded-[10px] px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center lg:flex">
           <Link
             href={rotasPainel.hoje}
-            className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}
+            className={cn(buttonVariants({ size: "sm" }), "min-h-9")}
           >
-            Entrar
-          </Link>
-          <Link
-            href={rotasPainel.hoje}
-            className={cn(buttonVariants({ size: "sm" }))}
-          >
-            Começar agora
+            {CTA_DEMO_LABEL}
           </Link>
         </div>
 
         <button
+          ref={btnRef}
           type="button"
-          className="inline-flex size-10 items-center justify-center rounded-[10px] text-foreground transition-colors hover:bg-muted lg:hidden"
+          className="inline-flex size-10 items-center justify-center rounded-[10px] text-foreground transition-colors duration-150 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
           aria-expanded={aberto}
           aria-controls="menu-mobile"
           aria-label={aberto ? "Fechar menu" : "Abrir menu"}
@@ -102,7 +111,7 @@ export function SiteHeader() {
         className="border-t border-border bg-background lg:hidden"
       >
         <nav
-          className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 sm:px-6"
+          className="mx-auto flex max-h-[calc(100dvh-3.5rem)] max-w-6xl flex-col gap-1 overflow-y-auto overscroll-contain px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6"
           aria-label="Menu mobile"
         >
           {NAV.map((item) => (
@@ -110,25 +119,18 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               onClick={fechar}
-              className="rounded-[12px] px-3 py-3 text-[15px] font-medium text-foreground hover:bg-muted"
+              className="rounded-[12px] px-3 py-3 text-[15px] font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {item.label}
             </a>
           ))}
-          <div className="mt-2 grid gap-2 border-t border-border pt-3">
+          <div className="mt-2 border-t border-border pt-3">
             <Link
               href={rotasPainel.hoje}
               onClick={fechar}
-              className={cn(buttonVariants({ variant: "secondary" }), "w-full")}
+              className={cn(buttonVariants(), "h-11 w-full")}
             >
-              Entrar
-            </Link>
-            <Link
-              href={rotasPainel.hoje}
-              onClick={fechar}
-              className={cn(buttonVariants(), "w-full")}
-            >
-              Começar agora
+              {CTA_DEMO_LABEL}
             </Link>
           </div>
         </nav>
