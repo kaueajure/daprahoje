@@ -24,6 +24,7 @@ export function MockStatus({
   )
 }
 
+/** Visão geral do dia — sem o bloco de assinatura da marca. */
 export function MockHojeCard({ className }: { className?: string }) {
   return (
     <div
@@ -57,7 +58,7 @@ export function MockHojeCard({ className }: { className?: string }) {
         ))}
       </div>
 
-      <div className="space-y-3 px-4 py-4 sm:px-5">
+      <div className="space-y-4 px-4 py-4 sm:px-5">
         <div>
           <p className="text-[11px] font-medium text-muted-foreground">
             Próximo atendimento
@@ -68,31 +69,37 @@ export function MockHojeCard({ className }: { className?: string }) {
                 14:00
               </p>
               <p className="mt-1 text-sm font-medium">Carlos Mendes</p>
-              <p className="text-sm text-muted-foreground">Corte + barba · 45 min</p>
+              <p className="text-sm text-muted-foreground">
+                Corte + barba · 45 min
+              </p>
             </div>
             <MockStatus tone="confirmed">Confirmado</MockStatus>
           </div>
         </div>
 
-        <div className="rounded-[14px] bg-secondary/70 px-3.5 py-3">
-          <div className="flex items-baseline justify-between gap-2">
-            <p className="text-sm font-semibold">Dá pra hoje?</p>
-            <p className="text-sm font-semibold text-[color:var(--brand)]">
-              Tem sim
-            </p>
-          </div>
-          <p className="mt-1 text-xs text-muted-foreground">3 horários livres</p>
-          <div className="mt-2.5 flex flex-wrap gap-2">
-            {["14:30", "16:00", "17:30"].map((h) => (
-              <span
-                key={h}
-                className="rounded-[10px] bg-card px-3 py-1.5 text-sm font-medium tabular-nums shadow-sm ring-1 ring-black/5"
-              >
-                {h}
+        <ul className="space-y-1.5 border-t border-border/70 pt-3">
+          {[
+            { hora: "14:00", label: "Carlos Mendes", tone: "busy" as const },
+            { hora: "15:00", label: "Livre · 30 min", tone: "free" as const },
+            { hora: "16:00", label: "Livre · 45 min", tone: "free" as const },
+          ].map((row) => (
+            <li
+              key={row.hora}
+              className={cn(
+                "flex items-center gap-3 rounded-[10px] px-2.5 py-2 text-sm",
+                row.tone === "free" && "bg-secondary/60",
+                row.tone === "busy" && "bg-card",
+              )}
+            >
+              <span className="w-11 shrink-0 font-medium tabular-nums">
+                {row.hora}
               </span>
-            ))}
-          </div>
-        </div>
+              <span className="min-w-0 truncate text-muted-foreground">
+                {row.label}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   )
@@ -145,6 +152,7 @@ export function MockAgendaLista({ className }: { className?: string }) {
   )
 }
 
+/** Experiência do cliente — sem a assinatura “Dá pra hoje?”. */
 export function MockPublicoCard({ className }: { className?: string }) {
   return (
     <div
@@ -161,12 +169,10 @@ export function MockPublicoCard({ className }: { className?: string }) {
         <p className="mt-2 text-xl font-semibold tracking-tight">João Barber</p>
         <p className="text-sm text-muted-foreground">Barbearia · Rio Preto</p>
       </div>
-      <div className="space-y-3 px-4 py-4 sm:px-5">
-        <div className="rounded-[14px] bg-secondary/70 px-3.5 py-3">
-          <p className="text-sm font-semibold">Dá pra hoje?</p>
-          <p className="mt-0.5 text-xs text-muted-foreground">
-            Escolha um horário livre
-          </p>
+      <div className="space-y-4 px-4 py-4 sm:px-5">
+        <div>
+          <p className="text-sm font-semibold">Escolha um horário</p>
+          <p className="mt-0.5 text-xs text-muted-foreground">Hoje, 20 de setembro</p>
           <div className="mt-2.5 grid grid-cols-3 gap-2">
             {["14:30", "16:00", "17:30"].map((h) => (
               <span
@@ -179,8 +185,12 @@ export function MockPublicoCard({ className }: { className?: string }) {
           </div>
         </div>
         <div className="space-y-2">
-          <p className="text-xs font-medium text-muted-foreground">Serviço</p>
-          {["Corte · 30 min · R$ 45", "Barba · 20 min · R$ 35"].map((s) => (
+          <p className="text-sm font-semibold">Escolha o serviço</p>
+          {[
+            "Corte · 30 min · R$ 45",
+            "Barba · 20 min · R$ 35",
+            "Corte + barba · 45 min · R$ 70",
+          ].map((s) => (
             <div
               key={s}
               className="rounded-[12px] px-3 py-2.5 text-sm ring-1 ring-black/[0.06]"

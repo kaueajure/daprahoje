@@ -7,7 +7,6 @@ const manrope = Manrope({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-manrope",
-  weight: ["400", "500", "600"],
 })
 
 export const metadata: Metadata = {

@@ -22,9 +22,12 @@ export type LogoSize = keyof typeof FRAME
 export function LogoMark({
   className,
   size = "md",
+  decorative = false,
 }: {
   className?: string
   size?: LogoSize
+  /** Quando o nome já está no pai (ex.: Link com aria-label). */
+  decorative?: boolean
 }) {
   return (
     <picture>
@@ -32,11 +35,12 @@ export function LogoMark({
       {/* eslint-disable-next-line @next/next/no-img-element -- WebP/PNG leve com width/height (sem CLS) */}
       <img
         src={LOGO_PNG}
-        alt="Da Pra Hoje"
+        alt={decorative ? "" : "Da Pra Hoje"}
         width={LOGO_W}
         height={LOGO_H}
         draggable={false}
         decoding="async"
+        aria-hidden={decorative || undefined}
         className={cn(
           "block shrink-0 object-contain select-none",
           FRAME[size],
@@ -56,7 +60,7 @@ export function Logo({
 }) {
   return (
     <span className={cn("inline-flex items-center", className)}>
-      <LogoMark size={size} />
+      <LogoMark size={size} decorative />
       <span className="sr-only">Da Pra Hoje</span>
     </span>
   )

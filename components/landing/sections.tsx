@@ -3,6 +3,8 @@ import { MessageCircle } from "lucide-react"
 
 import { rotasPainel } from "@/lib/routes"
 import {
+  BRAND_POSITIVE_ANSWER,
+  BRAND_QUESTION,
   CTA_DEMO_LABEL,
   CTA_DEMO_SECONDARY,
   SITE_HOST,
@@ -34,16 +36,15 @@ export function LandingHero() {
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pt-10 pb-16 sm:px-6 sm:pt-14 sm:pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-12 lg:px-8 lg:pt-16 lg:pb-24">
         <div>
           <LogoMark size="xl" className="mb-5" />
-          <p className="text-[13px] font-medium tracking-[0.04em] text-muted-foreground uppercase">
-            Agenda online · demonstração
+          <p className="inline-flex rounded-full border border-border bg-card px-3 py-1 text-[12px] font-medium text-muted-foreground">
+            Demonstração disponível
           </p>
-          <h1 className="mt-3 max-w-[18ch] text-balance text-[2.1rem] leading-[1.1] font-semibold tracking-tight sm:text-[2.75rem] lg:text-[3.1rem]">
-            Uma agenda que responde: dá pra hoje?
+          <h1 className="mt-4 max-w-[16ch] text-balance text-[2.1rem] leading-[1.1] font-semibold tracking-tight sm:text-[2.75rem] lg:text-[3.1rem]">
+            Sua agenda, fácil de entender.
           </h1>
           <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Feita para profissionais com horário marcado. Veja o próximo
-            atendimento e os horários livres em segundos — e explore o fluxo
-            completo na demonstração.
+            Veja o próximo atendimento, o resumo do dia e onde ainda cabe mais
+            um horário — feita para quem trabalha com hora marcada.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
@@ -65,9 +66,6 @@ export function LandingHero() {
               {CTA_DEMO_SECONDARY}
             </a>
           </div>
-          <p className="mt-5 text-sm text-muted-foreground">
-            Para barbeiros, manicures, tatuadores e quem vive de agenda.
-          </p>
         </div>
 
         <div className="relative">
@@ -122,10 +120,10 @@ export function LandingProblem() {
             </p>
             <ul className="mt-4 space-y-3 text-sm leading-relaxed sm:text-[15px]">
               {[
-                "Abrir o painel e ver o dia inteiro",
-                "Horários livres já calculados",
-                "Menos vai-e-volta no WhatsApp",
-                "Veja rapidamente onde cabe mais um atendimento",
+                "Veja o dia em uma única tela",
+                "Identifique espaços disponíveis",
+                "Organize bloqueios e atendimentos",
+                "Responda clientes sem fazer conta de cabeça",
               ].map((t) => (
                 <li key={t} className="flex gap-3">
                   <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[color:var(--brand)]" />
@@ -149,25 +147,24 @@ export function LandingDaPraHoje() {
             O diferencial
           </p>
           <h2 className="mt-3 text-balance text-2xl font-semibold tracking-tight sm:text-3xl">
-            A pergunta que organiza o seu dia
+            Saiba se ainda cabe mais um atendimento
           </h2>
           <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            O {SITE_NAME} calcula a disponibilidade com base nos seus serviços,
-            horários e bloqueios. Em segundos você sabe se cabe mais um cliente
-            — e quais são os horários.
+            A disponibilidade considera horário de funcionamento, atendimentos
+            existentes, bloqueios e duração do serviço. Você abre o painel e já
+            vê a resposta.
           </p>
           <p className="mt-4 text-base font-medium">
-            Não é um relatório. É a resposta que você precisa no meio do
-            expediente.
+            A resposta que você precisa durante o expediente.
           </p>
         </div>
 
         <div className="card-surface rounded-[24px] p-5 sm:p-7">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-sm text-muted-foreground">Dá pra hoje?</p>
+              <p className="text-sm text-muted-foreground">{BRAND_QUESTION}</p>
               <p className="mt-1 text-3xl font-semibold tracking-tight text-[color:var(--brand)] sm:text-4xl">
-                Tem sim.
+                {BRAND_POSITIVE_ANSWER}
               </p>
             </div>
             <MessageCircle
@@ -176,7 +173,7 @@ export function LandingDaPraHoje() {
             />
           </div>
           <p className="mt-2 text-sm text-muted-foreground">
-            3 horários livres nesta tarde
+            3 horários disponíveis
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             {["14:30", "16:00", "17:30"].map((h) => (
@@ -242,8 +239,8 @@ export function LandingProductDemo() {
             Veja como o {SITE_NAME} funciona
           </h2>
           <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Representações da interface real — o essencial para organizar o
-            dia, sem tela de marketing inventada.
+            Representações da interface real — cada tela mostra uma parte
+            diferente do sistema.
           </p>
         </div>
 
@@ -252,8 +249,8 @@ export function LandingProductDemo() {
             <div>
               <h3 className="text-xl font-semibold tracking-tight">Hoje</h3>
               <p className="mt-2 text-muted-foreground">
-                Próximo atendimento, resumo do dia, horários livres e a agenda
-                na mesma tela. Abrir → olhar → entender → agir.
+                Visão geral do dia: próximo atendimento, resumo e o que ainda
+                está livre. Abrir → olhar → entender → agir.
               </p>
             </div>
             <MockHojeCard />
@@ -263,8 +260,8 @@ export function LandingProductDemo() {
             <div className="lg:order-2">
               <h3 className="text-xl font-semibold tracking-tight">Agenda</h3>
               <p className="mt-2 text-muted-foreground">
-                Ocupados, livres e bloqueios no mesmo lugar. Sem grade confusa
-                — só o que importa para o turno.
+                Ordem dos horários com ocupados, livres e bloqueios — sem grade
+                confusa.
               </p>
             </div>
             <div className="lg:order-1">
@@ -274,12 +271,10 @@ export function LandingProductDemo() {
 
           <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
             <div>
-              <h3 className="text-xl font-semibold tracking-tight">
-                Serviços e clientes
-              </h3>
+              <h3 className="text-xl font-semibold tracking-tight">Serviços</h3>
               <p className="mt-2 text-muted-foreground">
-                Duração e valor definidos. Histórico do cliente à mão quando
-                precisar — sem virar um CRM pesado.
+                Duração e valor definidos. O essencial para montar o dia sem
+                virar um CRM.
               </p>
             </div>
             <MockServicos />
@@ -299,28 +294,19 @@ export function LandingPublicPage() {
             Página pública
           </p>
           <h2 className="mt-3 text-balance text-2xl font-semibold tracking-tight sm:text-3xl">
-            Seu link. O cliente agenda.
+            O agendamento do ponto de vista do cliente
           </h2>
           <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Cada profissional tem uma página no formato{" "}
+            Uma página simples no formato{" "}
             <span className="font-medium text-foreground">
               {SITE_HOST}/joaobarber
             </span>
-            . O cliente vê a disponibilidade, escolhe o serviço e marca — sem
-            ligar e sem ficar no vai-e-volta.
+            : escolher horário, serviço e confirmar — sem criar conta.
           </p>
-          <ul className="mt-5 space-y-2.5 text-sm text-muted-foreground sm:text-[15px]">
-            {[
-              "Sem criar conta para o cliente",
-              "Horários alinhados com a sua agenda",
-              "Na demonstração, teste o fluxo no mesmo navegador",
-            ].map((t) => (
-              <li key={t} className="flex gap-2.5">
-                <span className="mt-2 size-1.5 shrink-0 rounded-full bg-foreground" />
-                {t}
-              </li>
-            ))}
-          </ul>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Na demonstração, o fluxo funciona com dados locais no mesmo
+            navegador.
+          </p>
         </div>
         <MockPublicoCard className="mx-auto max-w-md lg:ml-auto lg:max-w-none" />
       </div>
@@ -334,12 +320,12 @@ export function LandingAudience() {
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <div className="max-w-2xl">
           <h2 className="text-balance text-2xl font-semibold tracking-tight sm:text-3xl">
-            Agenda online para quem vive de horário marcado
+            Feito para quem vive de horário marcado
           </h2>
           <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Seja agenda para barbeiros, manicures, tatuadores ou outros
-            autônomos — o {SITE_NAME} foi pensado para a rotina no celular,
-            entre um atendimento e outro.
+            Agenda online para barbeiros, manicures, tatuadores e outros
+            autônomos — pensada para a rotina no celular, entre um atendimento e
+            outro.
           </p>
         </div>
         <ul className="mt-8 flex flex-wrap gap-2">
@@ -362,7 +348,7 @@ export function LandingBenefits() {
     <section className="border-t border-border/70 bg-card/40">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         <h2 className="max-w-2xl text-balance text-2xl font-semibold tracking-tight sm:text-3xl">
-          Benefícios que importam no expediente
+          Benefícios que importam durante o expediente
         </h2>
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {LANDING_BENEFICIOS.map((item) => (
@@ -393,9 +379,8 @@ export function LandingSimplicity() {
             Não é um ERP. É a agenda que você consegue usar.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Sem dezenas de menus. Sem gráficos que ninguém abre. Sem
-            configuração interminável. Só o necessário para trabalhar com
-            horário marcado — com clareza.
+            Foco no que importa no turno: velocidade para consultar, clareza
+            para decidir e só o necessário para trabalhar com hora marcada.
           </p>
         </div>
       </div>
@@ -412,8 +397,7 @@ export function LandingCta() {
             E aí, dá pra hoje?
           </h2>
           <p className="mt-3 max-w-lg text-base text-primary-foreground/75 sm:text-lg">
-            Abra a demonstração, organize a agenda de exemplo e descubra em
-            segundos se cabe mais um atendimento.
+            Abra o painel e explore o fluxo completo.
           </p>
         </div>
         <Link
@@ -438,7 +422,7 @@ export function LandingFaq() {
           Perguntas frequentes
         </h2>
         <p className="mt-3 text-muted-foreground">
-          Respostas diretas sobre a agenda online do {SITE_NAME}.
+          Dúvidas comuns sobre a agenda online do {SITE_NAME}.
         </p>
         <div className="mt-8 divide-y divide-border border-y border-border">
           {LANDING_FAQ.map((item) => (
@@ -471,7 +455,7 @@ export function LandingFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
           <Link href="/" aria-label={SITE_NAME}>
-            <LogoMark size="lg" />
+            <LogoMark size="lg" decorative />
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
             Agenda online simples para quem trabalha com horário marcado.
@@ -485,7 +469,7 @@ export function LandingFooter() {
                 href="#produto"
                 className="hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                Dá pra hoje?
+                Diferencial
               </a>
             </li>
             <li>

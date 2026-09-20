@@ -1,10 +1,19 @@
+import { readFile } from "node:fs/promises"
+import { join } from "node:path"
 import { ImageResponse } from "next/og"
+import { BRAND_POSITIVE_ANSWER, BRAND_QUESTION, SITE_TAGLINE } from "@/lib/site"
 
-export const alt = "Da Pra Hoje — agenda online para quem trabalha com horário marcado"
+export const alt =
+  "Da Pra Hoje — agenda online para quem trabalha com horário marcado"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const logoData = await readFile(
+    join(process.cwd(), "public/brand/logo.png"),
+  )
+  const logoSrc = `data:image/png;base64,${logoData.toString("base64")}`
+
   return new ImageResponse(
     (
       <div
@@ -23,42 +32,29 @@ export default function OpenGraphImage() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 16,
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={logoSrc}
+            width={200}
+            height={86}
+            alt=""
+            style={{ objectFit: "contain" }}
+          />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 18,
           }}
         >
           <div
             style={{
               display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 56,
-              height: 56,
-              borderRadius: 14,
-              background: "#111111",
-              color: "#ffffff",
-              fontSize: 22,
-              fontWeight: 700,
-              letterSpacing: "-0.04em",
-            }}
-          >
-            DPH
-          </div>
-          <div
-            style={{
-              fontSize: 28,
-              fontWeight: 600,
-              color: "#111111",
-              letterSpacing: "-0.03em",
-            }}
-          >
-            Da Pra Hoje
-          </div>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-          <div
-            style={{
-              fontSize: 72,
+              fontSize: 68,
               fontWeight: 650,
               color: "#111111",
               letterSpacing: "-0.045em",
@@ -66,17 +62,18 @@ export default function OpenGraphImage() {
               maxWidth: 900,
             }}
           >
-            Dá pra hoje?
+            {BRAND_QUESTION}
           </div>
           <div
             style={{
-              fontSize: 28,
+              display: "flex",
+              fontSize: 26,
               color: "#5c5c58",
               maxWidth: 720,
               lineHeight: 1.35,
             }}
           >
-            Agenda online simples para quem trabalha com horário marcado.
+            {SITE_TAGLINE}
           </div>
         </div>
 
@@ -89,14 +86,22 @@ export default function OpenGraphImage() {
         >
           <div
             style={{
+              display: "flex",
               width: 10,
               height: 10,
               borderRadius: 999,
               background: "#48b878",
             }}
           />
-          <div style={{ fontSize: 22, color: "#48b878", fontWeight: 600 }}>
-            Tem sim · horários livres na hora
+          <div
+            style={{
+              display: "flex",
+              fontSize: 24,
+              color: "#48b878",
+              fontWeight: 600,
+            }}
+          >
+            {BRAND_POSITIVE_ANSWER.replace(/\.$/, "")} · 3 horários disponíveis
           </div>
         </div>
       </div>

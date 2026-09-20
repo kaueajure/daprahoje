@@ -68,7 +68,7 @@ export function SiteHeader() {
           className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           aria-label="Da Pra Hoje — início"
         >
-          <LogoMark size="md" />
+          <LogoMark size="md" decorative />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Seções">

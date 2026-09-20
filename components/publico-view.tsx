@@ -156,12 +156,11 @@ export function PublicoView({ slug }: { slug: string }) {
         <>
           <section className="card-surface mt-6 rounded-[16px] p-5 text-center">
             <p className="text-[22px] font-semibold tracking-tight">
-              Dá pra hoje?
+              Horários disponíveis hoje
             </p>
             {ehHoje && temSlots ? (
               <>
-                <p className="mt-1 text-2xl font-semibold">Sim.</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="mt-1 text-sm text-muted-foreground">
                   Próximo horário às{" "}
                   <span className="font-medium text-foreground">
                     {livres[0]}
@@ -171,7 +170,7 @@ export function PublicoView({ slug }: { slug: string }) {
             ) : ehHoje && !temSlots ? (
               <>
                 <p className="mt-1 text-base font-medium">
-                  Hoje não temos mais horários.
+                  Não há horários disponíveis hoje.
                 </p>
                 {proximoFuturo && (
                   <div className="mt-3">

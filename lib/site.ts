@@ -18,3 +18,8 @@ export const SITE_HOME_TITLE =
 
 export const CTA_DEMO_LABEL = "Testar demonstração"
 export const CTA_DEMO_SECONDARY = "Ver como funciona"
+
+/** Assinatura verbal da marca — resposta a “Dá pra hoje?” */
+export const BRAND_QUESTION = "Dá pra hoje?"
+export const BRAND_POSITIVE_ANSWER = "Dá sim."
+export const BRAND_NEGATIVE_ANSWER = "Hoje não dá mais."

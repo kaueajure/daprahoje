@@ -140,7 +140,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             className="flex h-full items-center justify-center"
             aria-label="Da Pra Hoje"
           >
-            <LogoMark size="md" />
+            <LogoMark size="md" decorative />
           </Link>
         </header>
 

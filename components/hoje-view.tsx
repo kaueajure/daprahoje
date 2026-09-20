@@ -150,7 +150,7 @@ export function HojeView() {
               {livres.length > 0 ? (
                 <>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    <span className="font-medium text-foreground">Sim.</span>{" "}
+                    <span className="font-medium text-foreground">Dá sim.</span>{" "}
                     {livres.length}{" "}
                     {livres.length === 1
                       ? "horário disponível"
@@ -172,7 +172,7 @@ export function HojeView() {
               ) : (
                 <div className="mt-1">
                   <p className="text-sm text-muted-foreground">
-                    Hoje não temos mais horários.
+                    Hoje não dá mais.
                   </p>
                   {proximoLivreFuturo && (
                     <div className="mt-3 rounded-[10px] bg-secondary px-3 py-2.5">
